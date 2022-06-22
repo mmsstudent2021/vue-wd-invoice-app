@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
       <div class="row my-5 justify-content-center">
-        <div class="col-lg-8">
+        <div class="col-md-10">
             <AppTitle text="Invoice Application" />
-            <InputForm />
-            <ItemTable />
+            <InputForm @add-list="addInvoiceList" />
+            <ItemTable :lists="invoiceLists" />
         </div>
       </div>
   </div>
@@ -15,7 +15,24 @@ import AppTitle from "@/components/AppTitle";
 import InputForm from "@/components/InputForm";
 import ItemTable from "@/components/ItemTable";
 export default {
-  components: {ItemTable, InputForm, AppTitle}
+  components: {ItemTable, InputForm, AppTitle},
+  data() {
+    return {
+      invoiceLists: [
+
+      ]
+    }
+  },
+  methods: {
+    addInvoiceList(quantity,selectedItem) {
+      this.invoiceLists = [...this.invoiceLists,{
+        itemName:selectedItem.name,
+        price : selectedItem.price,
+        quantity,
+        cost : selectedItem.price * quantity
+      }]
+    }
+  },
 }
 </script>
 

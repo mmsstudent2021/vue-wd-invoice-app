@@ -12,34 +12,14 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>1</td>
-        <td>Apple</td>
-        <td class="text-end">50</td>
-        <td class="text-end">5</td>
-        <td class="text-end">250</td>
+      <tr v-for="(list,index) in lists" :key="list.id">
+        <td>{{ index+1 }}</td>
+        <td>{{ list.itemName }}</td>
+        <td class="text-end">{{ list.price }}</td>
+        <td class="text-end">{{  list.quantity }}</td>
+        <td class="text-end">{{ list.cost }}</td>
       </tr>
-      <tr>
-        <td>1</td>
-        <td>Apple</td>
-        <td class="text-end">50</td>
-        <td class="text-end">5</td>
-        <td class="text-end">250</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Apple</td>
-        <td class="text-end">50</td>
-        <td class="text-end">5</td>
-        <td class="text-end">250</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Apple</td>
-        <td class="text-end">50</td>
-        <td class="text-end">5</td>
-        <td class="text-end">250</td>
-      </tr>
+
       <tr>
 
         <td colspan="4" class="text-center">Total</td>
@@ -53,7 +33,9 @@
 
 <script>
 export default {
-
+  props: {
+    lists: Object,
+  },
 }
 </script>
 
