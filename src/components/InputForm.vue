@@ -1,5 +1,5 @@
 <template>
-  <div class="border rounded my-4 p-3">
+  <div class="border d-print-none rounded my-4 p-3">
     <form @submit.prevent="inputToApp" action="">
       <div class="row g-3">
         <div class="col-md-6">
@@ -55,7 +55,7 @@ export default {
           price:30,
         }
       ],
-      quantity : 0,
+      quantity : 1,
       selectedItem: null,
     }
   },

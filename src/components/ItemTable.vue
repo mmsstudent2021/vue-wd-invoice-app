@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <table class="table table-bordered">
+    <table v-if="lists.length" class="table table-bordered">
       <thead>
       <tr>
         <th>#</th>
@@ -12,9 +12,19 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="(list,index) in lists" :key="list.id">
-        <td>{{ index+1 }}</td>
-        <td>{{ list.itemName }}</td>
+      <tr
+          class="animate__animated animate__fadeIn"
+
+          v-for="(list,index) in lists"
+          :key="list.id"
+      >
+        <td>
+          {{ index+1 }}
+        </td>
+        <td class="d-flex justify-content-between ">
+          {{ list.itemName }}
+          <i class="ms-2 bi bi-trash3 text-danger d-print-none" @click="del(index)"></i>
+        </td>
         <td class="text-end">{{ list.price }}</td>
         <td class="text-end">{{  list.quantity }}</td>
         <td class="text-end">{{ list.cost }}</td>
@@ -23,7 +33,7 @@
       <tr>
 
         <td colspan="4" class="text-center">Total</td>
-        <td class="text-end">1000</td>
+        <td class="text-end">{{ total }}</td>
       </tr>
       </tbody>
     </table>
@@ -35,6 +45,16 @@
 export default {
   props: {
     lists: Object,
+  },
+  computed: {
+    total() {
+      return this.lists.reduce((p,c)=>p+c.cost,0)
+    }
+  },
+  methods: {
+    del(index) {
+      this.$emit("deleteList",index)
+    }
   },
 }
 </script>
